@@ -6,5 +6,6 @@ namespace to_do_backend.Dtos
     {
         [Required]
         public string Title { get; set; }
+        public bool Done { get; set; }
     }
 }

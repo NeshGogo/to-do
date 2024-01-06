@@ -15,7 +15,7 @@ namespace to_do_backend.Data.Configurations
             builder.Property(p => p.UpdatedBy).IsRequired().HasMaxLength(128);
             builder.Property(p => p.UpdatedDate).IsRequired();
             builder.Property(p => p.CreatedDate).IsRequired();
-
+            builder.Property(p => p.Done).IsRequired();
         }
     }
 }
