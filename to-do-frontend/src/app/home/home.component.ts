@@ -27,6 +27,7 @@ import { Task, TaskCreate } from '../Models/Task';
         <app-task-list
           [todo]="this.taskToDo()"
           [done]="this.taskDone()"
+          (removetask)="this.removeTask($event)"
           (taskUpdated)="this.updateTask($event)"
         ></app-task-list>
       </div>
@@ -72,7 +73,22 @@ export class HomeComponent implements OnInit {
       done: task.done,
     };
     this.service.update(task.id, body).subscribe(p => {
-      console.log(p);
     });
+  }
+  removeTask(task: Task){
+    this.service.delete(task.id)
+    .subscribe(() => {
+      const indexToDo = this.taskToDo().findIndex(p => p.id === task.id);
+      if(indexToDo !== -1){
+        const collection =[...this.taskToDo()];
+        collection.splice(indexToDo,1);
+        this.taskToDo.set(collection);
+      }  else {
+        const collection = [...this.taskDone()];
+        const indexDone = collection.findIndex(p => p.id === task.id);
+        collection.splice(indexDone,1)
+        this.taskDone.set(collection);
+      }
+    })
   }
 }

@@ -9,11 +9,20 @@ import {
   transferArrayItem,
 } from '@angular/cdk/drag-drop';
 import { Task } from '../../Models/Task';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'app-task-list',
   standalone: true,
-  imports: [DragDropModule, CdkDropListGroup, CdkDropList, CdkDrag],
+  imports: [
+    DragDropModule,
+    CdkDropListGroup,
+    CdkDropList,
+    CdkDrag,
+    MatIconModule,
+    MatButtonModule,
+  ],
   template: `
     <div class="container">
       <h2>To do</h2>
@@ -27,7 +36,17 @@ import { Task } from '../../Models/Task';
         (cdkDropListDropped)="drop($event)"
       >
         @for (item of todo; track item) {
-        <div class="box" cdkDrag>{{ item.title }}</div>
+        <div class="box" cdkDrag>
+          <span>{{ item.title }}</span>
+          <button
+            mat-icon-button
+            color="warn"
+            aria-label="Example icon button with a remove icon"
+            (click)="this.remove(item)"
+          >
+            <mat-icon>remove</mat-icon>
+          </button>
+        </div>
         }
       </div>
     </div>
@@ -44,7 +63,17 @@ import { Task } from '../../Models/Task';
         (cdkDropListDropped)="drop($event)"
       >
         @for (item of done; track item) {
-        <div class="box" cdkDrag>{{ item.title }}</div>
+        <div class="box" cdkDrag>
+          <span>{{ item.title }}</span>
+          <button
+            mat-icon-button
+            color="warn"
+            aria-label="Example icon button with a remove icon"
+            (click)="this.remove(item)"
+          >
+            <mat-icon>remove</mat-icon>
+          </button>
+        </div>
         }
       </div>
     </div>
@@ -107,59 +136,10 @@ import { Task } from '../../Models/Task';
   `,
 })
 export class TaskListComponent {
-  @Output() taskUpdated: EventEmitter<Task> = new EventEmitter()
+  @Output() taskUpdated: EventEmitter<Task> = new EventEmitter();
+  @Output() removetask: EventEmitter<Task> = new EventEmitter();
   @Input() todo: Task[] = [];
   @Input() done: Task[] = [];
-  // todo: Task[] = [
-  //   {
-  //     id: '2131',
-  //     title: 'Get to work',
-  //     done: false,
-  //   },
-  //   {
-  //     id: '2132',
-  //     title: 'Pick up groceries',
-  //     done: false,
-  //   },
-  //   {
-  //     id: '2133',
-  //     title: 'Go home',
-  //     done: false,
-  //   },
-  //   {
-  //     id: '2134',
-  //     title: 'Fall asleep',
-  //     done: false,
-  //   },
-  // ];
-
-  // done: Task[] = [
-  //   {
-  //     id: '2131',
-  //     title: 'Get up',
-  //     done: true,
-  //   },
-  //   {
-  //     id: '2131',
-  //     title: 'Brush teeth',
-  //     done: true,
-  //   },
-  //   {
-  //     id: '2131',
-  //     title: 'Take a shower',
-  //     done: true,
-  //   },
-  //   {
-  //     id: '2131',
-  //     title: 'Check e-mail',
-  //     done: true,
-  //   },
-  //   {
-  //     id: '2131',
-  //     title: 'Walk dog',
-  //     done: true,
-  //   },
-  // ];
 
   drop(event: CdkDragDrop<Task[]>) {
     if (event.previousContainer === event.container) {
@@ -169,7 +149,7 @@ export class TaskListComponent {
         event.currentIndex
       );
     } else {
-      const element =  event.previousContainer.data[event.previousIndex];
+      const element = event.previousContainer.data[event.previousIndex];
       element.done = !element.done;
       transferArrayItem(
         event.previousContainer.data,
@@ -179,5 +159,9 @@ export class TaskListComponent {
       );
       this.taskUpdated.emit(element);
     }
+  }
+
+  remove(task: Task) {
+    this.removetask.emit(task);
   }
 }
