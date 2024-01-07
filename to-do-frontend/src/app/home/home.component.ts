@@ -1,5 +1,4 @@
 import { Component, OnInit, signal } from '@angular/core';
-import { ThemeToggleComponent } from '../components/theme-toggle/theme-toggle.component';
 import { TaskListComponent } from '../components/task-list/task-list.component';
 import { TaskFormComponent } from '../components/task-form/task-form.component';
 import { MatDividerModule } from '@angular/material/divider';
@@ -10,13 +9,11 @@ import { Task, TaskCreate } from '../Models/Task';
   selector: 'app-home',
   standalone: true,
   imports: [
-    ThemeToggleComponent,
     TaskListComponent,
     TaskFormComponent,
     MatDividerModule,
   ],
   template: `
-    <app-theme-toggle></app-theme-toggle>
     <section class="container">
       <h1 class="primary-title text-center">My Tasks</h1>
       <div class="my-2">
