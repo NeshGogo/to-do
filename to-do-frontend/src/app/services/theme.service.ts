@@ -12,9 +12,9 @@ export class ThemeService {
 
   public set setDarkMode(v : boolean) {
     if (v) {
-      document.body.classList.add('dark-theme');
+      document.body.classList.add('mat-app-background');
     } else {
-      document.body.classList.remove('dark-theme');
+      document.body.classList.remove('mat-app-background');
     }
     this.darkMode.set(v);
   }

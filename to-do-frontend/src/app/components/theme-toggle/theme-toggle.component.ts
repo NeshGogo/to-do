@@ -11,9 +11,12 @@ import { ThemeService } from '../../services/theme.service';
     <div class="container">
       <div><mat-icon>nights_stay</mat-icon></div>
       <p class="">Dark Mode</p>
-     <div>
-     <mat-slide-toggle class="btn" (click)="toggleTheme()"></mat-slide-toggle>
-     </div>
+      <div>
+        <mat-slide-toggle
+          class="btn"
+          (click)="toggleTheme()"
+        ></mat-slide-toggle>
+      </div>
     </div>
   `,
   styles: `
