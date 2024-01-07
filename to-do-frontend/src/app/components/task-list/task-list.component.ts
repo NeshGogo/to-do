@@ -90,7 +90,6 @@ import { MatButtonModule } from '@angular/material/button';
 .list {
   border: solid 1px #ccc;
   min-height: 60px;
-  background: white;
   border-radius: 4px;
   overflow: hidden;
   display: block;
@@ -99,14 +98,12 @@ import { MatButtonModule } from '@angular/material/button';
 .box {
   padding: 20px 10px;
   border-bottom: solid 1px #ccc;
-  color: rgba(0, 0, 0, 0.87);
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
   box-sizing: border-box;
   cursor: move;
-  background: white;
   font-size: 14px;
 }
 
