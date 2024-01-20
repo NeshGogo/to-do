@@ -12,7 +12,5 @@ export const appConfig: ApplicationConfig = {
     importProvidersFrom(HttpClientModule),
     provideClientHydration(),
     provideAnimations(),
-    provideAnimations(),
-    provideAnimations(),
   ],
 };
