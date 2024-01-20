@@ -26,7 +26,7 @@ if (app.Environment.IsDevelopment())
     app.UseCors(c => c.AllowAnyHeader().AllowAnyOrigin().AllowAnyMethod());
 }
 
-
+app.UseCors(c => c.WithOrigins(["https://to-do-app.azurewebsites.net", "http://localhost:4200", "http://localhost:4000"]));
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
