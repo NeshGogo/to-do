@@ -80,9 +80,8 @@ import { MatButtonModule } from '@angular/material/button';
   `,
   styles: `
     .container {
-  width: 400px;
-  max-width: 100%;
-  margin: 0 25px 25px 0;
+  width: calc(100vw - 20vw);
+  margin-bottom: 25px;
   display: inline-block;
   vertical-align: top;
 }
@@ -129,6 +128,16 @@ import { MatButtonModule } from '@angular/material/button';
 
 .list.cdk-drop-list-dragging .box:not(.cdk-drag-placeholder) {
   transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+@media (min-width: 1024px) {
+  .container {
+  width: 400px;
+  max-width: 100%;
+  margin: 0 25px 25px 0;
+  display: inline-block;
+  vertical-align: top;
+}
 }
   `,
 })
